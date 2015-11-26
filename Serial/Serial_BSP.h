@@ -43,6 +43,36 @@ extern "C" {
   * @brief      串口数据发送模块
   * @{
   */
+  
+/*--------------------此部分需要修改--------------------*/
+/* 编译选项开关，部分编译器（如51）不支持va_list等，此时不实现printf() */
+//#define UART_LEGACY
+
+/* 如未定义uint8_t等基本数据类型，需要先定义 */
+//#include "TypeDef.h"
+
+/* HAL层提供的UART底层实现宏定义，此处以TMS320F28027为例，需要根据实际情况修改 */
+
+/* HAL头文件 */
+#include "System.h"
+#include "UART.h"
+
+/**
+  * UART发送数据宏定义，一般发送数据都是向某个寄存器中写入一个8位数据。
+  * 此处data即为要发送的8位（1 byte）数据。
+  */
+#define HAL_UART_SEND_UINT8(UARTdata) (SciaRegs.SCITXBUF = UARTdata)
+
+/**
+  * UART判断是否可以发送新数据宏定义。
+  * 一般都存在一个寄存器可以用于判断此时TX Buffer是否可以接收新数据。
+  * 可以发送数据时，宏的值应为非0值；
+  * 当宏的值为0时，代表此时不能发送新数据。
+  */
+#define HAL_UART_TX_READY (SciaRegs.SCICTL2.bit.TXRDY)
+
+/*--------------------此部分需要修改--------------------*/
+
 void UARTSendChar(const char c);
 
 void UARTSendByte(const uint8_t UARTdata);
