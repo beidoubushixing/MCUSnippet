@@ -2,8 +2,8 @@
   **************************************************************
   * @file       TypeDef.h
   * @author	    高明飞
-  * @version    V1.0
-  * @date       2015-11-23
+  * @version    V1.1
+  * @date       2015-11-26
   *
   * @brief      定义一些基本数据类型
   *
@@ -18,6 +18,8 @@
   *   - 修改注释格式使其可以使用Doxygen
   * 2015-11-23 :
   *   - 进一步修改注释格式
+  * 2015-11-26 :
+  *   - 增加Bool类型的定义
   *
   * @endverbatim
   *
@@ -63,6 +65,12 @@ typedef signed short int16_t;
 #define TYPE_INT8_T
 /** 8位有符号整数 */
 typedef signed char int8_t;
+#endif
+
+#ifndef TYPE_BOOL
+#define TYPE_BOOL
+/** Bool类型 */
+typedef enum { FALSE = 0, TRUE = !FALSE } bool;
 #endif
 
 #endif
