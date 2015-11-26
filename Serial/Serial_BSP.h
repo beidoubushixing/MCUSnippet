@@ -2,8 +2,8 @@
   **************************************************************
   * @file       Serial_BSP.h
   * @author	    高明飞
-  * @version    V1.0
-  * @date       2015-11-23
+  * @version    V1.1
+  * @date       2015-11-26
   *
   * @brief      串口数据发送抽象接口
   *
@@ -22,6 +22,8 @@
   *   - 修改注释格式使其可以使用Doxygen.
   * 2015-11-23 :
   *   - 进一步修改注释格式。
+  * 2015-11-26 :
+  *   - 去掉内联函数inline（因为很多编译器对此的支持均有问题）
   * @endverbatim
   *
   * @note
@@ -41,93 +43,13 @@ extern "C" {
   * @brief      串口数据发送模块
   * @{
   */
-
-#ifdef UART_LEGACY
 void UARTSendChar(const char c);
-#else
-/**
-  * @brief  发送一个字符
-  *
-  * @param  c: 需要发送的字符
-  *
-  * @retval None
-  */
-inline void UARTSendChar(const char c)
-{
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8(c);
-}
-#endif
 
-
-
-#ifdef UART_LEGACY
 void UARTSendByte(const uint8_t UARTdata);
-#else
-/**
-  * @brief  发送一个二进制数据，以字节形式
-  *
-  * @param  UARTdata: 需要发送的数据
-  *
-  * @retval None
-  */
-inline void UARTSendByte(const uint8_t UARTdata)
-{
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8(UARTdata);
-}
-#endif
 
-
-
-#ifdef UART_LEGACY
 void UARTSendWord(const uint16_t UARTdata);
-#else
-/**
-  * @brief  发送一个二进制数据，以字(WORD, 2 Bytes)形式
-  *
-  * @param  UARTdata: 需要发送的数据
-  *
-  * @retval None
-  *
-  * @note   先发送高字节
-  */
-inline void UARTSendWord(const uint16_t UARTdata)
-{
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8((uint8_t)(UARTdata>>8 & 0x00FF));
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8((uint8_t)(UARTdata & 0x00FF));
-}
-#endif
 
-
-
-#ifdef UART_LEGACY
 void UARTSendDword(const uint32_t UARTdata);
-#else
-/**
-  * @brief  发送一个二进制数据，以双字(DWORD, 4 Bytes)形式
-  *
-  * @param  UARTdata:
-  *
-  * @retval 需要发送的数据
-  *
-  * @note   先发送高字节
-  */
-inline void UARTSendDword(const uint32_t UARTdata)
-{
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8((uint8_t)(UARTdata>>24 & 0x00FF));
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8((uint8_t)(UARTdata>>16 & 0x00FF));
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8((uint8_t)(UARTdata>>8 & 0x00FF));
-  while(!HAL_UART_TX_READY);
-  HAL_UART_SEND_UINT8((uint8_t)(UARTdata & 0x00FF));
-}
-#endif
-
 
 void UARTSendUnsignASCII(uint32_t UARTdata, uint8_t base, uint8_t align);
 

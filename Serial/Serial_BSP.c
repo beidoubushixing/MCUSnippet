@@ -2,8 +2,8 @@
   **************************************************************
   * @file       Serial_BSP.c
   * @author	    高明飞
-  * @version    V1.0
-  * @date       2015-11-23
+  * @version    V1.1
+  * @date       2015-11-26
   *
   * @brief      串口数据发送抽象接口
   *
@@ -22,6 +22,8 @@
   *   - 修改注释格式使其可以使用Doxygen.
   * 2015-11-23 :
   *   - 进一步修改注释格式。
+  * 2015-11-26 :
+  *   - 去掉内联函数inline（因为很多编译器对此的支持均有问题）
   * @endverbatim
   *
   * @note
@@ -33,9 +35,9 @@
   * @brief      串口数据发送模块
   * @{
   */
-
+  
 /*--------------------此部分需要修改--------------------*/
-/* 编译选项开关，部分编译器（如51）不支持inline、va_list等，此时不使用内联函数，不实现printf() */
+/* 编译选项开关，部分编译器（如51）不支持va_list等，此时不实现printf() */
 //#define UART_LEGACY
 
 /* 如未定义uint8_t等基本数据类型，需要先定义 */
@@ -63,14 +65,13 @@
 
 /*--------------------此部分需要修改--------------------*/
 
-/* 内联函数直接在头文件中定义 */
+
 #include "Serial_BSP.h"
 
 #ifndef UART_LEGACY
-#include "stdio.h"
+#include "stdarg.h"
 #endif
 
-#ifdef UART_LEGACY
 /**
   * @brief  发送一个字符
   *
@@ -83,11 +84,7 @@ void UARTSendChar(const char c)
   while(!HAL_UART_TX_READY);
   HAL_UART_SEND_UINT8(c);
 }
-#endif
 
-
-
-#ifdef UART_LEGACY
 /**
   * @brief  发送一个二进制数据，以字节形式
   *
@@ -100,11 +97,7 @@ void UARTSendByte(const uint8_t UARTdata)
   while(!HAL_UART_TX_READY);
   HAL_UART_SEND_UINT8(UARTdata);
 }
-#endif
 
-
-
-#ifdef UART_LEGACY
 /**
   * @brief  发送一个二进制数据，以字(WORD, 2 Bytes)形式
   *
@@ -121,11 +114,7 @@ void UARTSendWord(const uint16_t UARTdata)
   while(!HAL_UART_TX_READY);
   HAL_UART_SEND_UINT8((uint8_t)(UARTdata & 0x00FF));
 }
-#endif
 
-
-
-#ifdef UART_LEGACY
 /**
   * @brief  发送一个二进制数据，以双字(DWORD, 4 Bytes)形式
   *
@@ -146,7 +135,7 @@ void UARTSendDword(const uint32_t UARTdata)
   while(!HAL_UART_TX_READY);
   HAL_UART_SEND_UINT8((uint8_t)(UARTdata & 0x00FF));
 }
-#endif
+
 
 /**
   * @brief  发送一个无符号二进制数据，以ASCII码形式
@@ -180,8 +169,12 @@ void UARTSendUnsignASCII(uint32_t UARTdata, uint8_t base, uint8_t align)
 		/* 补0对齐数据 */
 		if(align == 0)
 			align = 1;
-		for(;align > 0;align--)
-			UARTSendChar('0');
+    for (; align > 0; align--)
+    {
+      while (!HAL_UART_TX_READY);
+      HAL_UART_SEND_UINT8('0');
+    }
+
 		return;
 	}
 
@@ -200,11 +193,17 @@ void UARTSendUnsignASCII(uint32_t UARTdata, uint8_t base, uint8_t align)
 	/* 补0对齐数据 */
 	if(i < align)
 		for(;align > i;align--)
-			UARTSendChar('0');
+    {
+      while (!HAL_UART_TX_READY);
+      HAL_UART_SEND_UINT8('0');
+    }
 
 	/* 逆序发送转换得到的ASCII码 */
 	for(--i;i >= 0;i--)
-		UARTSendChar(str[i]);
+  {
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8(str[i]);
+  }
 }
 
 /**
@@ -225,12 +224,14 @@ void UARTSendSignASCII(int32_t UARTdata, uint8_t align)
 {
 	if(UARTdata < 0)
 	{
-		UARTSendChar('-');
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8('-');
 		UARTSendUnsignASCII((uint32_t)(-UARTdata), 10, align);
 	}
 	else
 	{
-		UARTSendChar('+');
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8('+');
 		UARTSendUnsignASCII((uint32_t)(UARTdata), 10, align);
 	}
 }
@@ -248,7 +249,10 @@ void UARTSendSignASCII(int32_t UARTdata, uint8_t align)
 void UARTSendString(const char * str)
 {
     for(; *str != '\0'; str++)
-        UARTSendChar(*str);
+    {
+      while (!HAL_UART_TX_READY);
+      HAL_UART_SEND_UINT8(*str);
+    }
 }
 
 /**
@@ -264,7 +268,8 @@ void UARTSendByteArray(const uint8_t * UARTdata, const uint16_t num)
     uint16_t count = 0;
     for(; count < num; count++, UARTdata++)
     {
-    	UARTSendByte(*UARTdata);
+      while (!HAL_UART_TX_READY);
+      HAL_UART_SEND_UINT8(*UARTdata);
     }
 }
 
@@ -283,7 +288,10 @@ void UARTSendWordArray(const uint16_t * UARTdata, const uint16_t num)
 	uint16_t count = 0;
 	for(; count < num; count++, UARTdata++)
 	{
-		UARTSendWord(*UARTdata);
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8((uint8_t)(*UARTdata >> 8 & 0x00FF));
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8((uint8_t)(*UARTdata & 0x00FF));
 	}
 }
 
@@ -302,7 +310,14 @@ void UARTSendDwordArray(const uint32_t * UARTdata, const uint16_t num)
 	uint16_t count = 0;
 	for(; count < num; count++, UARTdata++)
 	{
-		UARTSendDword(*UARTdata);
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8((uint8_t)(*UARTdata >> 24 & 0x00FF));
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8((uint8_t)(*UARTdata >> 16 & 0x00FF));
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8((uint8_t)(*UARTdata >> 8 & 0x00FF));
+    while (!HAL_UART_TX_READY);
+    HAL_UART_SEND_UINT8((uint8_t)(*UARTdata & 0x00FF));
 	}
 }
 
@@ -339,7 +354,8 @@ void UARTprintf(const char *format, ...)
 		if(*format != '%')
 		{
 			/* 一般字符，按常规字符发送即可 */
-			UARTSendChar(*format);
+      while (!HAL_UART_TX_READY);
+      HAL_UART_SEND_UINT8(*format);
 			continue;
 		}
 		else
@@ -381,8 +397,10 @@ void UARTprintf(const char *format, ...)
 				break;
 			default:
 				/* 遇到未定义占位符按字符原样发送 */
-				UARTSendChar('%');
-				UARTSendChar(*format);
+        while (!HAL_UART_TX_READY);
+        HAL_UART_SEND_UINT8('%');
+        while (!HAL_UART_TX_READY);
+        HAL_UART_SEND_UINT8(*format);
 				break;
 			}
 		}
