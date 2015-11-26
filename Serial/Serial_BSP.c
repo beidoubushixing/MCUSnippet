@@ -64,7 +64,7 @@
 /*--------------------此部分需要修改--------------------*/
 
 /* 内联函数直接在头文件中定义 */
-#include "UARTSendData.h"
+#include "Serial_BSP.h"
 
 #ifndef UART_LEGACY
 #include "stdio.h"
