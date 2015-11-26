@@ -1,0 +1,636 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.10"/>
+<title>XF5152CE: XFS5152CE.h 文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">科大讯飞语音合成芯片XFS5152CE模块函数参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>科大讯飞TTS芯片 XFS5152CE BSP程序 </p>
+<dl class="section author"><dt>作者</dt><dd>高明飞</dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2015-09-24</dd></dl>
+<p>本模块封装好了XFS5152CE的接口，使用时需要先配置好底层通信驱动， 之后直接调用相关函数即可。<br />
+需要先调用初始化函数。</p>
+<dl class="section note"><dt>注解</dt><dd>通信方式可配置为UART、SPI、I2C，此BSP程序中不涉及具体实现方式。</dd></dl>
+<dl class="todo"><dt><b>待办事项:</b></dt><dd>目前未实现以下功能：<br />
+1.语音编解码功能<br />
+2.语音识别功能<br />
+3.文本缓存功能<br />
+4.省电模式（此部分功能数据手册给出的信息不全，进入省电模式后唤醒有问题）<br />
+</dd></dl>
+<p>修改记录：<br />
+ 2015-09-26 :<br />
+ -修改注释格式使其可以使用Doxygen<br />
+ 2015-09-27 :<br />
+ -为内部函数增加static限定<br />
+</p>
+
+
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ac4623ade789a54e358f33167e5309c22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4623ade789a54e358f33167e5309c22">XFS_BUFFER_SIZE</a>&#160;&#160;&#160;50</td></tr>
+<tr class="separator:ac4623ade789a54e358f33167e5309c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed3ad47d14aa570e1292d1512f90041d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed3ad47d14aa570e1292d1512f90041d">XFS5152CE_SEND_BYTES</a>(XFSData,  XFSCount)&#160;&#160;&#160;I2CWriteMultiBytes(0x40,XFSCount,XFSData)</td></tr>
+<tr class="separator:aed3ad47d14aa570e1292d1512f90041d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30329f12a15bfccbcb8f38251c9c8732"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30329f12a15bfccbcb8f38251c9c8732">XFS5152CE_READ_BYTE</a>(XFSData)&#160;&#160;&#160;I2CReadByte(0x40,XFSData)</td></tr>
+<tr class="separator:a30329f12a15bfccbcb8f38251c9c8732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad141e4b3e5f8bd16dcfc839529dbad72"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad141e4b3e5f8bd16dcfc839529dbad72">XFS5152CE_BUSY</a>&#160;&#160;&#160;P42</td></tr>
+<tr class="separator:ad141e4b3e5f8bd16dcfc839529dbad72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a65a9fefd5cb87a65af2ec404bc63095d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> { <a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095daf1185aff8f53e08331579173e1d13e56">XFSOK</a>, 
+<a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095da4e4f021eb6d2118286938082dcb409bc">XFSERROR</a>
+ }<tr class="separator:a65a9fefd5cb87a65af2ec404bc63095d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
+<tr class="memitem:a04be3c5f658d238eb80fb62dfd396cb3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3">XFSSpeakers</a> { <br />
+&#160;&#160;<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3a89ed9b0aab2433ad8b9a2bca53825ea2">XF_XiaoYan</a> =03, 
+<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3a81000219af0088a3ffeefee15d7a546b">XF_Xujiu</a> =51, 
+<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3a0f212340759c1fdf8494d9d2483c2831">XF_XuDuo</a> =52, 
+<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3a85b7109547239d2baa561a7ae63e8c21">XF_XiaoPing</a> =53, 
+<br />
+&#160;&#160;<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3a443eb65646d2708886a9038e16b302ab">XF_Donald</a> =54, 
+<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3a40241a683597e6c2d72dceab4da542b0">XF_XuXiaobao</a> =55
+<br />
+ }<tr class="separator:a04be3c5f658d238eb80fb62dfd396cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a81eaf88a888fa068bf19180c41632954"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81eaf88a888fa068bf19180c41632954">XFS5152CE_Init</a> ()</td></tr>
+<tr class="separator:a81eaf88a888fa068bf19180c41632954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507e90b8f6eda6dc7d95578332dc8693"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a507e90b8f6eda6dc7d95578332dc8693">XFS5152CE_Start</a> (uint8_t *XFData, uint8_t XFCount)</td></tr>
+<tr class="separator:a507e90b8f6eda6dc7d95578332dc8693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312d12361fa37f01fcb56732016f8913"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a312d12361fa37f01fcb56732016f8913">XFS5152CE_Pause</a> ()</td></tr>
+<tr class="separator:a312d12361fa37f01fcb56732016f8913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09f32806cc23bb714a6c651e1db6802f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09f32806cc23bb714a6c651e1db6802f">XFS5152CE_Resume</a> ()</td></tr>
+<tr class="separator:a09f32806cc23bb714a6c651e1db6802f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ff287d0407fef1b7499a2da71cf4457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ff287d0407fef1b7499a2da71cf4457">XFS5152CE_Stop</a> ()</td></tr>
+<tr class="separator:a6ff287d0407fef1b7499a2da71cf4457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9278057f8bdc5c8b7e4bfedd48e73c2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9278057f8bdc5c8b7e4bfedd48e73c2e">XFS5152CE_Volume</a> (uint8_t XFVolume)</td></tr>
+<tr class="separator:a9278057f8bdc5c8b7e4bfedd48e73c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f955750f547e72f66bd58fb72053003"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f955750f547e72f66bd58fb72053003">XFS5152CE_Speed</a> (uint8_t XFSpeed)</td></tr>
+<tr class="separator:a4f955750f547e72f66bd58fb72053003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd07cd1b0dce5a5cc108406320421ffb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd07cd1b0dce5a5cc108406320421ffb">XFS5152CE_Tune</a> (uint8_t XFTune)</td></tr>
+<tr class="separator:afd07cd1b0dce5a5cc108406320421ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82454a2cc95d48e5e04ca72f6f7538a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa82454a2cc95d48e5e04ca72f6f7538a">XFS5152CE_Speaker</a> (<a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3">XFSSpeakers</a> XFSpeaker)</td></tr>
+<tr class="separator:aa82454a2cc95d48e5e04ca72f6f7538a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa885ae3847cb6a160bd2dd78fec2c987"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa885ae3847cb6a160bd2dd78fec2c987">XFS5152CE_Msg_Tone</a> (uint8_t XFNum)</td></tr>
+<tr class="separator:aa885ae3847cb6a160bd2dd78fec2c987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e25c875a205289cd383d15340526862"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e25c875a205289cd383d15340526862">XFS5152CE_Ring_Tone</a> (uint8_t XFNum)</td></tr>
+<tr class="separator:a3e25c875a205289cd383d15340526862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7be8c2337e92bf70cbc23bf5175d5c91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7be8c2337e92bf70cbc23bf5175d5c91">XFS5152CE_Warning_Tone</a> (uint8_t XFNum)</td></tr>
+<tr class="separator:a7be8c2337e92bf70cbc23bf5175d5c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+
+
+</div><h2 class="groupheader">宏定义说明</h2>
+<a class="anchor" id="ad141e4b3e5f8bd16dcfc839529dbad72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XFS5152CE_BUSY&#160;&#160;&#160;P42</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>返回RDY引脚电平</p>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">H</td><td>芯片正忙 </td></tr>
+    <tr><td class="paramname">L</td><td>芯片空闲</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>程序中可直接调用此宏来判断是否发送新数据 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a30329f12a15bfccbcb8f38251c9c8732"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XFS5152CE_READ_BYTE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">XFSData</td><td>)</td>
+          <td>&#160;&#160;&#160;I2CReadByte(0x40,XFSData)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>读取一个字节数据宏定义 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFSData</td><td>读取到的数据结果储存位置指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aed3ad47d14aa570e1292d1512f90041d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XFS5152CE_SEND_BYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">XFSData, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">XFSCount&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;I2CWriteMultiBytes(0x40,XFSCount,XFSData)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送一段数据宏定义 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFSData</td><td>待发送数据指针 </td></tr>
+    <tr><td class="paramname">XFSCount</td><td>数据个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac4623ade789a54e358f33167e5309c22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XFS_BUFFER_SIZE&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>数据缓存区大小，一次能发送的中文个数最多为 XFS_BUFFER_SIZE / 2 个</p>
+<dl class="section warning"><dt>警告</dt><dd>-XFS_BUFFER_SIZE要小于100，否则程序中某些地方会发生溢出;<br />
+-为支持文本控制标记，XFS_BUFFER_SIZE需要大于16. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a class="anchor" id="a65a9fefd5cb87a65af2ec404bc63095d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>返回结果枚举定义 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a class="anchor" id="a65a9fefd5cb87a65af2ec404bc63095daf1185aff8f53e08331579173e1d13e56"></a>XFSOK&#160;</td><td class="fielddoc">
+<p>函数执行正常 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a65a9fefd5cb87a65af2ec404bc63095da4e4f021eb6d2118286938082dcb409bc"></a>XFSERROR&#160;</td><td class="fielddoc">
+<p>函数执行发生错误 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3">XFSSpeakers</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发音人枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3a89ed9b0aab2433ad8b9a2bca53825ea2"></a>XF_XiaoYan&#160;</td><td class="fielddoc">
+<p>小燕（女，推荐） </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3a81000219af0088a3ffeefee15d7a546b"></a>XF_Xujiu&#160;</td><td class="fielddoc">
+<p>许久（男，推荐） </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3a0f212340759c1fdf8494d9d2483c2831"></a>XF_XuDuo&#160;</td><td class="fielddoc">
+<p>许多（男） </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3a85b7109547239d2baa561a7ae63e8c21"></a>XF_XiaoPing&#160;</td><td class="fielddoc">
+<p>小萍 （女） </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3a443eb65646d2708886a9038e16b302ab"></a>XF_Donald&#160;</td><td class="fielddoc">
+<p>唐老鸭（合成器效果） </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a04be3c5f658d238eb80fb62dfd396cb3a40241a683597e6c2d72dceab4da542b0"></a>XF_XuXiaobao&#160;</td><td class="fielddoc">
+<p>许小宝（女童声） </p>
+</td></tr>
+</table>
+</div>
+</div>
+
+
+<h2 class="groupheader">函数说明</h2>
+
+
+<a class="anchor" id="a81eaf88a888fa068bf19180c41632954"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>初始化XFS5152CE模块 判断通信信道是否正常，恢复默认合成参数</p>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a507e90b8f6eda6dc7d95578332dc8693"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Start </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>XFData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFCount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>开始语音合成</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFData</td><td>待合成数据头指针 </td></tr>
+    <tr><td class="paramname">XFCount</td><td>待合成数据个数，需小于XFS_BUFFER_SIZE / 2</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>XFCount为实际中文字符字数，不是字节数，一般XFCount为字节数的一半</dd></dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a312d12361fa37f01fcb56732016f8913"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Pause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>暂停语音合成</p>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a09f32806cc23bb714a6c651e1db6802f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Resume </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>恢复语音合成</p>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a6ff287d0407fef1b7499a2da71cf4457"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>停止语音合成</p>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a9278057f8bdc5c8b7e4bfedd48e73c2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Volume </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFVolume</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>设置音量</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFVolume</td><td>音量值，取值范围：[0, 9]，为整数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>复位后初始值为5 </dd></dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a4f955750f547e72f66bd58fb72053003"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Speed </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFSpeed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>设置语速</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFSpeed</td><td>语速，取值范围：[0, 9]，为整数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>复位后初始值为5 </dd></dl>
+</div>
+</div>
+
+
+
+<a class="anchor" id="afd07cd1b0dce5a5cc108406320421ffb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Tune </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFTune</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>设置语调</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFTune</td><td>语调，取值范围：[0, 9]，为整数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>复位后初始值为5 </dd></dl>
+</div>
+</div>
+
+
+<a class="anchor" id="aa82454a2cc95d48e5e04ca72f6f7538a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Speaker </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a04be3c5f658d238eb80fb62dfd396cb3">XFSSpeakers</a>&#160;</td>
+          <td class="paramname"><em>XFSpeaker</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>设置发音人</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFSpeaker</td><td>发音人，可能取值： <ul>
+<li>XF_XiaoYan: 小燕（女，推荐） </li>
+<li>XF_Xujiu: 许久（男，推荐） </li>
+<li>XF_XuDuo: 许多（男） </li>
+<li>XF_XiaoPing: 小萍（女） </li>
+<li>XF_Donald: 唐老鸭（合成器效果） </li>
+<li>XF_XuXiaobao: 许小宝（女童声）</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="aa885ae3847cb6a160bd2dd78fec2c987"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Msg_Tone </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFNum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>播放信息提示音</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFNum</td><td>信息提示音范围1~25</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+
+<a class="anchor" id="a3e25c875a205289cd383d15340526862"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Ring_Tone </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFNum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>播放铃声提示音</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFNum</td><td>铃声提示音范围1~25</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+<a class="anchor" id="a7be8c2337e92bf70cbc23bf5175d5c91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65a9fefd5cb87a65af2ec404bc63095d">XFSResult</a> XFS5152CE_Warning_Tone </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>XFNum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>播放警报提示音</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XFNum</td><td>警报提示音1~30</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>函数执行结果 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XFSOK</td><td>函数执行正常 </td></tr>
+    <tr><td class="paramname">XFSERROR</td><td>函数执行异常 </td></tr>
+  </table>
+  </dd>
+</dl>
+</div>
+</div>
+
+
+</div><!-- contents -->
+
+</body>
+</html>
