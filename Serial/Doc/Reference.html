@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.10"/>
+<title>UART发送数据抽象封装: UARTSendData.h 文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">UARTSendData模块函数参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>串口数据发送抽象接口 </p>
+<dl class="section author"><dt>作者</dt><dd>高明飞</dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2015-07-19</dd></dl>
+<p>本程序主要封装了一些常用的串口数据发送函数，便于不同项目中重复使用。 需要配合底层HAL程序使用。</p>
+<dl class="section note"><dt>注解</dt><dd>程序中未包含具体的底层实现方法，在使用时需要根据具体平台改写相关宏定义。</dd></dl>
+<p>修改记录：<br />
+ 2015-09-12 :<br />
+ -Bug Fixed;<br />
+ -添加UART_LEGACY宏定义<br />
+ 2015-09-26 :<br />
+ -修改注释格式使其可以使用Doxygen<br />
+</p>
+
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ac832ed29a095fd8492a6bdaeba280b8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac832ed29a095fd8492a6bdaeba280b8a">HAL_UART_SEND_UINT8</a>(UARTdata)&#160;&#160;&#160;(SciaRegs.SCITXBUF = UARTdata)</td></tr>
+<tr class="separator:ac832ed29a095fd8492a6bdaeba280b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a722cdf0caf72433091ebb27cbfb616cc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a722cdf0caf72433091ebb27cbfb616cc">HAL_UART_TX_READY</a>&#160;&#160;&#160;(SciaRegs.SCICTL2.bit.TXRDY)</td></tr>
+<tr class="separator:a722cdf0caf72433091ebb27cbfb616cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a10fb1f36689b989e21f5d00b7b363c5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10fb1f36689b989e21f5d00b7b363c5e">UARTSendChar</a> (const char c)</td></tr>
+<tr class="separator:a10fb1f36689b989e21f5d00b7b363c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cbbb62f463f6f0dc0a647a7e78a3525"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cbbb62f463f6f0dc0a647a7e78a3525">UARTSendByte</a> (const uint8_t UARTdata)</td></tr>
+<tr class="separator:a5cbbb62f463f6f0dc0a647a7e78a3525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86374e60586dc92dc971da461ee127a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac86374e60586dc92dc971da461ee127a">UARTSendWord</a> (const uint16_t UARTdata)</td></tr>
+<tr class="separator:ac86374e60586dc92dc971da461ee127a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a566619a7730b58544921f4c9b7bbaea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a566619a7730b58544921f4c9b7bbaea2">UARTSendDword</a> (const uint32_t UARTdata)</td></tr>
+<tr class="separator:a566619a7730b58544921f4c9b7bbaea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b8a9ed054d2b839e4eb969c92c67798"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b8a9ed054d2b839e4eb969c92c67798">UARTSendUnsignASCII</a> (uint32_t UARTdata, uint8_t base, uint8_t align)</td></tr>
+<tr class="separator:a5b8a9ed054d2b839e4eb969c92c67798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b3d7a2b7be17218df7ec016676b19f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b3d7a2b7be17218df7ec016676b19f4">UARTSendSignASCII</a> (int32_t UARTdata, uint8_t align)</td></tr>
+<tr class="separator:a7b3d7a2b7be17218df7ec016676b19f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ff60f2e11d7bc8c8a72bbd366ebf070"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ff60f2e11d7bc8c8a72bbd366ebf070">UARTSendString</a> (const char *str)</td></tr>
+<tr class="separator:a0ff60f2e11d7bc8c8a72bbd366ebf070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ab79d6ef8f919b5ad06d9a7d09c0cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8ab79d6ef8f919b5ad06d9a7d09c0cb">UARTSendByteArray</a> (const uint8_t *UARTdata, const uint16_t num)</td></tr>
+<tr class="separator:ac8ab79d6ef8f919b5ad06d9a7d09c0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a522a4bda485ee70f40a134e816a47736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a522a4bda485ee70f40a134e816a47736">UARTSendWordArray</a> (const uint16_t *UARTdata, const uint16_t num)</td></tr>
+<tr class="separator:a522a4bda485ee70f40a134e816a47736"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35831246e7e4b9f426f63e189a4fef33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35831246e7e4b9f426f63e189a4fef33">UARTSendDwordArray</a> (const uint32_t *UARTdata, const uint16_t num)</td></tr>
+<tr class="separator:a35831246e7e4b9f426f63e189a4fef33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d31ff7d2f3479fdd7c4fcf14038b3c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d31ff7d2f3479fdd7c4fcf14038b3c7">UARTprintf</a> (const char *format,...)</td></tr>
+<tr class="separator:a1d31ff7d2f3479fdd7c4fcf14038b3c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+
+
+</div><h2 class="groupheader">宏定义说明</h2>
+<a class="anchor" id="ac832ed29a095fd8492a6bdaeba280b8a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HAL_UART_SEND_UINT8</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">UARTdata</td><td>)</td>
+          <td>&#160;&#160;&#160;(SciaRegs.SCITXBUF = UARTdata)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>UART发送数据宏定义，一般发送数据都是向某个寄存器中写入一个8位数据。 此处data即为要发送的8位（1 byte）数据。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a722cdf0caf72433091ebb27cbfb616cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HAL_UART_TX_READY&#160;&#160;&#160;(SciaRegs.SCICTL2.bit.TXRDY)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>UART判断是否可以发送新数据宏定义。 一般都存在一个寄存器可以用于判断此时TX Buffer是否可以接收新数据。 可以发送数据时，宏的值应为非0值； 当宏的值为0时，代表此时不能发送新数据。 </p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a class="anchor" id="a1d31ff7d2f3479fdd7c4fcf14038b3c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTprintf </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>简易版printf函数</p>
+<dl class="section note"><dt>注解</dt><dd></dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>格式化字符串，支持的占位符： <ul>
+<li>d: 带符号整数 </li>
+<li>u: 无符号整数, 十进制形式 </li>
+<li>x: 无符号整数, 十六进制形式, 自动补足至2、4、8位 </li>
+<li>b: 无符号整数, 二进制形式, 自动补足至8、16、32位 </li>
+<li>c: 一个ASCII字符 </li>
+<li>s: 字符串</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>警告</dt><dd>输入的数字类型必须为uint32_t，否则会发生错误 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5cbbb62f463f6f0dc0a647a7e78a3525"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendByte </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>UARTdata</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>发送一个二进制数据，以字节形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>需要发送的数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8ab79d6ef8f919b5ad06d9a7d09c0cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendByteArray </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>UARTdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送二进制数据数组，以字节形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>数组头指针 </td></tr>
+    <tr><td class="paramname">num</td><td>数组中数据个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a10fb1f36689b989e21f5d00b7b363c5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendChar </td>
+          <td>(</td>
+          <td class="paramtype">const char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>发送一个字符</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>需要发送的字符 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a566619a7730b58544921f4c9b7bbaea2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendDword </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>UARTdata</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>发送一个二进制数据，以双字(DWORD, 4 Bytes)形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>需要发送的数据</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>MSB First </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a35831246e7e4b9f426f63e189a4fef33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendDwordArray </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t *&#160;</td>
+          <td class="paramname"><em>UARTdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送二进制数据数组，以双字(DWORD, 4 Bytes)形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>数组头指针 </td></tr>
+    <tr><td class="paramname">num</td><td>数组中数据个数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>MSB First </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7b3d7a2b7be17218df7ec016676b19f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendSignASCII </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>UARTdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>align</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送一个带符号二进制数据，以ASCII码形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>需要发送的数据</td></tr>
+    <tr><td class="paramname">align</td><td>是否需要对齐 <ul>
+<li>0: 无需对齐 </li>
+<li>other: 指定的位数，若数据所需位数小于此值，将用0在前面补足</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>若数据所需位数大于align值，将按实际位数输出，不会截短。 此处的位数是指数据的位数，不包括前面的符号位。 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0ff60f2e11d7bc8c8a72bbd366ebf070"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendString </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送字符串</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>字符串头指针</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>字符串需以'\0'结尾 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5b8a9ed054d2b839e4eb969c92c67798"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendUnsignASCII </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>UARTdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>align</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送一个无符号二进制数据，以ASCII码形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>需要发送的数据</td></tr>
+    <tr><td class="paramname">base</td><td>数据进制， 理论上支持2~36进制，常用值： <ul>
+<li>2: 二进制 </li>
+<li>10: 十进制 </li>
+<li>16: 十六进制</li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">align</td><td>是否需要对齐 <ul>
+<li>0: 无需对齐 </li>
+<li>other: 指定的位数，若数据所需位数小于此值，将用0在前面补足</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>若数据所需位数大于align值，将按实际位数输出，不会截短。 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac86374e60586dc92dc971da461ee127a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendWord </td>
+          <td>(</td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>UARTdata</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>发送一个二进制数据，以字(WORD, 2 Bytes)形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>需要发送的数据</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>MSB First </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a522a4bda485ee70f40a134e816a47736"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UARTSendWordArray </td>
+          <td>(</td>
+          <td class="paramtype">const uint16_t *&#160;</td>
+          <td class="paramname"><em>UARTdata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发送二进制数据数组，以字(WORD, 2 Bytes)形式</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UARTdata</td><td>数组头指针 </td></tr>
+    <tr><td class="paramname">num</td><td>数组中数据个数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd>MSB First </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+
+</body>
+</html>
