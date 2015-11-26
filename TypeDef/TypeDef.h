@@ -20,6 +20,7 @@
   *   - 进一步修改注释格式
   * 2015-11-26 :
   *   - 增加Bool类型的定义
+  *   - 增加ErrorStatus类型的定义
   *
   * @endverbatim
   *
@@ -71,6 +72,12 @@ typedef signed char int8_t;
 #define TYPE_BOOL
 /** Bool类型 */
 typedef enum { FALSE = 0, TRUE = !FALSE } bool;
+#endif
+
+#ifndef TYPE_RESULT
+#define TYPE_RESULT
+/** ErrorStatus类型 */
+typedef enum { ERROR = 0, SUCCESS = !ERROR } ErrorStatus;
 #endif
 
 #endif
