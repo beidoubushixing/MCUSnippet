@@ -71,7 +71,7 @@ typedef signed char int8_t;
 #ifndef TYPE_BOOL
 #define TYPE_BOOL
 /** Bool类型 */
-typedef enum { FALSE = 0, TRUE = !FALSE } bool;
+typedef enum { FALSE = 0, TRUE = !FALSE } Bool;
 #endif
 
 #ifndef TYPE_RESULT
