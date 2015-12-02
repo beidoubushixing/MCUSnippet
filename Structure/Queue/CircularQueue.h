@@ -1,18 +1,18 @@
 /**
   **************************************************************
   * @file       CircularQueue.h
-  * @author	    ¸ßÃ÷·É
+  * @author     é«˜æ˜é£
   * @version    V0.1
   * @date       2015-11-26
   *
-  * @brief      Ñ­»·¶ÓÁĞ
+  * @brief      å¾ªç¯é˜Ÿåˆ—
   *
   * @details 
   * @verbatim
-  * ±¾Ä£¿é·â×°ÁËÑ­»·¶ÓÁĞµÄÊµÏÖ¡£
-  * Ê¹ÓÃÊı×é½øĞĞË³Ğò´æ´¢¡£
+  * æœ¬æ¨¡å—å°è£…äº†å¾ªç¯é˜Ÿåˆ—çš„å®ç°ã€‚
+  * ä½¿ç”¨æ•°ç»„è¿›è¡Œé¡ºåºå­˜å‚¨ã€‚
   *
-  * ĞŞ¸Ä¼ÇÂ¼£º
+  * ä¿®æ”¹è®°å½•ï¼š
   * 2015-11-26 :
   *   - File Created.
   *
@@ -31,32 +31,32 @@
   */
 
 /** @addtogroup CircularQueue
-  * @brief Ñ­»·¶ÓÁĞ
+  * @brief å¾ªç¯é˜Ÿåˆ—
   * @{
   */
 
 /**
-  * @brief  ¶ÓÁĞBufferÊı×é´óĞ¡, <255
+  * @brief  é˜Ÿåˆ—Bufferæ•°ç»„å¤§å°, <255
   */
 #define Queue_Buffer_Size 16
 
 /**
-  * @brief  ¶ÓÁĞÖĞÃ¿¸öÔªËØµÄÀàĞÍ
+  * @brief  é˜Ÿåˆ—ä¸­æ¯ä¸ªå…ƒç´ çš„ç±»å‹
   */
 #define Queue_EleType uint8_t
 
 /**
-  * @brief  Ñ­»·¶ÓÁĞ
+  * @brief  å¾ªç¯é˜Ÿåˆ—
   *
   * @detail
-  * ÎªÇø·Ö¶ÓÂúºÍ¶Ó¿Õ£¬ĞèÒªÎşÉüÒ»¸ö´æ´¢µ¥Ôª¡£
-  * ¹ÊBufferÖĞÊµ¼ÊÔªËØµÄ¸öÊıÎªQueue_Buffer_Size + 1¡£
+  * ä¸ºåŒºåˆ†é˜Ÿæ»¡å’Œé˜Ÿç©ºï¼Œéœ€è¦ç‰ºç‰²ä¸€ä¸ªå­˜å‚¨å•å…ƒã€‚
+  * æ•…Bufferä¸­å®é™…å…ƒç´ çš„ä¸ªæ•°ä¸ºQueue_Buffer_Size + 1ã€‚
   */
 typedef struct
 {
   Queue_EleType Buffer[Queue_Buffer_Size + 1];    /*!<Buffer */
-  uint8_t front;                            /*!<Êı¾İÍ· */
-  uint8_t rear;                             /*!<Êı¾İÎ² */
+  uint8_t front;                            /*!<æ•°æ®å¤´ */
+  uint8_t rear;                             /*!<æ•°æ®å°¾ */
 } CircularQueue;
 
 void CircularInit(CircularQueue * Q);
